@@ -1,0 +1,4 @@
+development of board class:
+    trouble with random numbers in data, made makeZero function which solved?
+    made make move, which makes a move on a certain column of the board and stops illegal moves.
+    simple print functions
