@@ -70,8 +70,7 @@ bool Board::checkPosition(int X, int Y)
 
     if (rowCount >= 4){
         // Check right (positive X)
-        int dir = [1, 0];
-        if (data[Y][X+)
+        int dir[2] = {1, 0};
     }
 }
 
