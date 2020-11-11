@@ -47,14 +47,16 @@ void Board::print()
 
 bool Board::checkDirection(int X, int Y, int dir[2]){
     int p = data[Y][X];
-    int checks[4] = {0,0,0,0};
+    int streakPos = 0;
     for (int i = 0; i < 4; i++){
         if (data[Y + (i * (dir[1]))][X + (i * (dir[0]))] == p){
-            checks[i] = 1;
+            streakPos++;
         } else {
-            
+            break;
         }
     }
+
+
 }
 
 bool Board::checkPosition(int X, int Y)
