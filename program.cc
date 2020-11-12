@@ -3,6 +3,9 @@
 
 using namespace std;
 
+int HEIGHT = 6;
+int WIDTH = 7;
+
 class Board
 {
 private:
@@ -14,11 +17,21 @@ public:
     void makeMove(int, int);
     bool checkPosition(int);
     bool checkDirection(int, int, int[]);
+    bool canMove(int);
 };
+
+bool Board::canMove(int x)
+{
+    if (data[0][x] == 0){
+        return true;
+    } else {
+        return false;
+    }
+}
 
 void Board::makeMove(int p, int x)
 {
-    for (int y = 7; y > 0; y--){
+    for (int y = HEIGHT-1; y >= 0; y--){
         if (data[y][x] == 0) {
             data[y][x] = p;
             break;
@@ -28,8 +41,8 @@ void Board::makeMove(int p, int x)
 
 void Board::makeZero()
 {
-    for (int y = 0; y < 7; y++){
-        for (int x = 0; x < 7; x++){
+    for (int y = 0; y < HEIGHT; y++){
+        for (int x = 0; x < WIDTH; x++){
             data[y][x] = 0;
         }
     }
@@ -37,9 +50,9 @@ void Board::makeZero()
 
 void Board::print()
 {
-    for (int y = 0; y < 7; y++){
-        for (int x = 0; x < 7; x++){
-            cout << data[y][x] << " ";
+    for (int y = 0; y < HEIGHT; y++){
+        for (int x = 0; x < WIDTH; x++){
+            cout << (data[y][x] == 1 ? " X " : (data[y][x] == 2 ? " O " : " . "));
         }
         cout << "\n";
     }
@@ -75,7 +88,7 @@ bool Board::checkDirection(int X, int Y, int dir[2]){
 bool Board::checkPosition(int X)
 {
     int Y;
-    for (int i = 0; i < 7; i++){
+    for (int i = 0; i < HEIGHT; i++){
         if (data[i][X] != 0){
             Y = i;
             break;
@@ -85,12 +98,14 @@ bool Board::checkPosition(int X)
     // Check horizontally and vertically
     int rowCount = 0;
     int colCount = 0;
-    for (int i = 0; i < 7; i++){
+    for (int i = 0; i < WIDTH; i++){
         if (data[Y][i] == p){
             rowCount++;
         }
-        if (data[i][X] == p){
-            colCount++;
+        if (i < HEIGHT){
+            if (data[i][X] == p){
+                colCount++;
+            }
         }
     }
 
@@ -134,6 +149,7 @@ int main() {
     board.makeMove(1, 1);
     board.makeMove(1, 1);
     board.makeMove(1, 1);
+    board.makeMove(2, 1);
     board.print();
 
     cout << boolalpha << board.checkPosition(1) << endl;
